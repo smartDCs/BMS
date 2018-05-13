@@ -9,7 +9,6 @@ import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 
 /**
  *
@@ -40,12 +39,13 @@ public class Inicio extends javax.swing.JFrame {
         cerrar_pestaña = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         renombrar = new javax.swing.JMenuItem();
+        menu_info = new javax.swing.JPopupMenu();
         pestañas = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
+        cargar_plano = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         cerrar_pestaña.setText("Cerrar Pestaña");
@@ -71,6 +71,7 @@ public class Inicio extends javax.swing.JFrame {
         menu_emergente.add(renombrar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema Contra Incendios");
 
         pestañas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pestañas.setTabPlacement(javax.swing.JTabbedPane.LEFT);
@@ -90,7 +91,7 @@ public class Inicio extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 361, Short.MAX_VALUE)
+            .addGap(0, 351, Short.MAX_VALUE)
         );
 
         pestañas.addTab("Planta 1", jPanel1);
@@ -103,7 +104,7 @@ public class Inicio extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 361, Short.MAX_VALUE)
+            .addGap(0, 351, Short.MAX_VALUE)
         );
 
         pestañas.addTab("Planta 2", jPanel3);
@@ -116,24 +117,44 @@ public class Inicio extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 361, Short.MAX_VALUE)
+            .addGap(0, 351, Short.MAX_VALUE)
         );
 
         pestañas.addTab("+", jPanel2);
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
+        jToolBar1.setName(""); // NOI18N
 
-        jButton1.setText("jButton1");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton1);
+        cargar_plano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/upload color 30x30.png"))); // NOI18N
+        cargar_plano.setToolTipText("Cargar plano");
+        cargar_plano.setFocusable(false);
+        cargar_plano.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        cargar_plano.setName("Cargar plano"); // NOI18N
+        cargar_plano.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        cargar_plano.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cargar_planoMouseEntered(evt);
+            }
+        });
+        cargar_plano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cargar_planoActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(cargar_plano);
 
-        jButton2.setText("jButton2");
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/valve 30x30.png"))); // NOI18N
+        jButton2.setToolTipText("Válvula");
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setName("Válvula"); // NOI18N
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton2MouseEntered(evt);
+            }
+        });
         jToolBar1.add(jButton2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -146,7 +167,7 @@ public class Inicio extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pestañas)
                 .addContainerGap())
@@ -218,6 +239,21 @@ JFrame frame = new JFrame("Input dialog");
        }
     }//GEN-LAST:event_renombrarActionPerformed
 
+    private void cargar_planoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cargar_planoMouseEntered
+      
+    
+      
+    }//GEN-LAST:event_cargar_planoMouseEntered
+
+    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+    
+    }//GEN-LAST:event_jButton2MouseEntered
+
+    private void cargar_planoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargar_planoActionPerformed
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_cargar_planoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,8 +290,8 @@ JFrame frame = new JFrame("Input dialog");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cargar_plano;
     private javax.swing.JMenuItem cerrar_pestaña;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -263,6 +299,7 @@ JFrame frame = new JFrame("Input dialog");
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JPopupMenu menu_emergente;
+    private javax.swing.JPopupMenu menu_info;
     public static javax.swing.JTabbedPane pestañas;
     private javax.swing.JMenuItem renombrar;
     // End of variables declaration//GEN-END:variables
