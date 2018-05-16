@@ -5,10 +5,13 @@
  */
 package smartdcs_bms;
 
+import java.io.File;
 import javax.swing.Icon;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -16,11 +19,13 @@ import javax.swing.JPanel;
  */
 public class Inicio extends javax.swing.JFrame {
 
+   
     /**
      * Creates new form Inicio
      */
     public Inicio() {
         initComponents();
+     
         Icon icono=new javax.swing.ImageIcon(getClass().getResource("/iconos/edificio_icon1.png"));
                  pestañas.setIconAt(0, icono);
                   pestañas.setIconAt(1, icono);
@@ -39,7 +44,6 @@ public class Inicio extends javax.swing.JFrame {
         cerrar_pestaña = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         renombrar = new javax.swing.JMenuItem();
-        menu_info = new javax.swing.JPopupMenu();
         pestañas = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -47,6 +51,8 @@ public class Inicio extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         cargar_plano = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+
+        menu_emergente.setBackground(new java.awt.Color(0, 51, 51));
 
         cerrar_pestaña.setText("Cerrar Pestaña");
         cerrar_pestaña.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -72,7 +78,9 @@ public class Inicio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema Contra Incendios");
+        setBackground(new java.awt.Color(51, 51, 51));
 
+        pestañas.setBackground(new java.awt.Color(51, 51, 51));
         pestañas.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         pestañas.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         pestañas.setFont(new java.awt.Font("BankGothic Md BT", 1, 14)); // NOI18N
@@ -83,6 +91,8 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -91,7 +101,7 @@ public class Inicio extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 351, Short.MAX_VALUE)
+            .addGap(0, 397, Short.MAX_VALUE)
         );
 
         pestañas.addTab("Planta 1", jPanel1);
@@ -104,7 +114,7 @@ public class Inicio extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 351, Short.MAX_VALUE)
+            .addGap(0, 397, Short.MAX_VALUE)
         );
 
         pestañas.addTab("Planta 2", jPanel3);
@@ -117,15 +127,17 @@ public class Inicio extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 351, Short.MAX_VALUE)
+            .addGap(0, 397, Short.MAX_VALUE)
         );
 
         pestañas.addTab("+", jPanel2);
 
+        jToolBar1.setBackground(new java.awt.Color(204, 204, 204));
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
         jToolBar1.setName(""); // NOI18N
 
+        cargar_plano.setBackground(new java.awt.Color(204, 204, 204));
         cargar_plano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/upload color 30x30.png"))); // NOI18N
         cargar_plano.setToolTipText("Cargar plano");
         cargar_plano.setFocusable(false);
@@ -144,6 +156,7 @@ public class Inicio extends javax.swing.JFrame {
         });
         jToolBar1.add(cargar_plano);
 
+        jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/valve 30x30.png"))); // NOI18N
         jButton2.setToolTipText("Válvula");
         jButton2.setFocusable(false);
@@ -250,8 +263,38 @@ JFrame frame = new JFrame("Input dialog");
     }//GEN-LAST:event_jButton2MouseEntered
 
     private void cargar_planoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargar_planoActionPerformed
-        // TODO add your handling code here:
-       
+ 
+        //** identifica la pestaña seleccionada**//
+        int indexTab=pestañas.getSelectedIndex();
+        String tab=pestañas.getTitleAt(indexTab);
+        Icon icono=pestañas.getIconAt(indexTab);
+  //** abrir imagen de fondo**//
+  
+   JFileChooser abrir_imagen=new JFileChooser();
+   abrir_imagen.setFileFilter(new FileNameExtensionFilter("Archivos de imagen", "jpg", "jpeg", "png", "gif"));
+   abrir_imagen.showDialog(this, "Abrir");
+   File file = abrir_imagen.getSelectedFile();
+   if(file!=null)
+   {
+  String ruta=file.getPath();
+   Icon fondo=new javax.swing.ImageIcon(ruta);
+ 
+ //** crea un Image panel**//
+ rojerusan.RSPanelImage imagenpane = new rojerusan.RSPanelImage(); 
+  imagenpane.setImagen(fondo);
+  
+  //** añade el panel a la pestaña seleccionada**//
+  pestañas.remove(indexTab);
+  pestañas.add(imagenpane, indexTab);
+  pestañas.setTitleAt(indexTab, tab);
+  pestañas.setIconAt(indexTab, icono);
+  pestañas.setSelectedIndex(indexTab);
+   }
+   else{
+       JOptionPane.showMessageDialog(this,"Imagen no válida", 
+        "WARNING!", 
+        JOptionPane.WARNING_MESSAGE);
+   }
     }//GEN-LAST:event_cargar_planoActionPerformed
 
     /**
@@ -299,7 +342,6 @@ JFrame frame = new JFrame("Input dialog");
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JPopupMenu menu_emergente;
-    private javax.swing.JPopupMenu menu_info;
     public static javax.swing.JTabbedPane pestañas;
     private javax.swing.JMenuItem renombrar;
     // End of variables declaration//GEN-END:variables
