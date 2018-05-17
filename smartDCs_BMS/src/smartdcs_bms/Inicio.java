@@ -5,13 +5,23 @@
  */
 package smartdcs_bms;
 
+import java.awt.Component;
+import java.awt.Cursor;
+import java.awt.dnd.DragSource;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.io.File;
+import java.util.jar.Attributes.Name;
 import javax.swing.Icon;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import rojerusan.RSPanelImage;
 
 /**
  *
@@ -19,7 +29,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class Inicio extends javax.swing.JFrame {
 
-   
+    public Cursor  cur_def  = new Cursor(Cursor.DEFAULT_CURSOR);  //  @jve:decl-index=0:
+	public Cursor  cur_move  = DragSource.DefaultMoveDrop;  //  @jve:decl-index=0:
+       public rojerusan.RSPanelImage imagenpane;
+       RSPanelImage[] paneles=new RSPanelImage[200];
+        int indexTab;
     /**
      * Creates new form Inicio
      */
@@ -29,6 +43,7 @@ public class Inicio extends javax.swing.JFrame {
         Icon icono=new javax.swing.ImageIcon(getClass().getResource("/iconos/edificio_icon1.png"));
                  pestañas.setIconAt(0, icono);
                   pestañas.setIconAt(1, icono);
+                  inicializarBarra_herramientas();
     }
 
     /**
@@ -50,7 +65,14 @@ public class Inicio extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
         cargar_plano = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Valvula = new javax.swing.JButton();
+        sprinkler = new javax.swing.JButton();
+        sensor_humo = new javax.swing.JButton();
+        estroboscopico = new javax.swing.JButton();
+        boton_manual = new javax.swing.JButton();
+        bomba = new javax.swing.JButton();
+        extractor = new javax.swing.JButton();
+        ventilador = new javax.swing.JButton();
 
         menu_emergente.setBackground(new java.awt.Color(0, 51, 51));
 
@@ -156,19 +178,117 @@ public class Inicio extends javax.swing.JFrame {
         });
         jToolBar1.add(cargar_plano);
 
-        jButton2.setBackground(new java.awt.Color(204, 204, 204));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/valve 30x30.png"))); // NOI18N
-        jButton2.setToolTipText("Válvula");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setName("Válvula"); // NOI18N
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        Valvula.setBackground(new java.awt.Color(204, 204, 204));
+        Valvula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/valve 30x30.png"))); // NOI18N
+        Valvula.setToolTipText("Válvula");
+        Valvula.setFocusable(false);
+        Valvula.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Valvula.setName("Válvula"); // NOI18N
+        Valvula.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        Valvula.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jButton2MouseEntered(evt);
+                ValvulaMouseEntered(evt);
             }
         });
-        jToolBar1.add(jButton2);
+        jToolBar1.add(Valvula);
+
+        sprinkler.setBackground(new java.awt.Color(204, 204, 204));
+        sprinkler.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sprinkler.png"))); // NOI18N
+        sprinkler.setToolTipText("Sprinkler");
+        sprinkler.setFocusable(false);
+        sprinkler.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        sprinkler.setName("Válvula"); // NOI18N
+        sprinkler.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        sprinkler.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                sprinklerMouseEntered(evt);
+            }
+        });
+        jToolBar1.add(sprinkler);
+
+        sensor_humo.setBackground(new java.awt.Color(204, 204, 204));
+        sensor_humo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/sensor_humo.png"))); // NOI18N
+        sensor_humo.setToolTipText("Sensor de Humo");
+        sensor_humo.setFocusable(false);
+        sensor_humo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        sensor_humo.setName("Válvula"); // NOI18N
+        sensor_humo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        sensor_humo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                sensor_humoMouseEntered(evt);
+            }
+        });
+        jToolBar1.add(sensor_humo);
+
+        estroboscopico.setBackground(new java.awt.Color(204, 204, 204));
+        estroboscopico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono_estroboscopica.png"))); // NOI18N
+        estroboscopico.setToolTipText("Luz Estroboscópica");
+        estroboscopico.setFocusable(false);
+        estroboscopico.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        estroboscopico.setName("Válvula"); // NOI18N
+        estroboscopico.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        estroboscopico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                estroboscopicoMouseEntered(evt);
+            }
+        });
+        jToolBar1.add(estroboscopico);
+
+        boton_manual.setBackground(new java.awt.Color(204, 204, 204));
+        boton_manual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/estacion manual_icono.png"))); // NOI18N
+        boton_manual.setToolTipText("Estación manual");
+        boton_manual.setFocusable(false);
+        boton_manual.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        boton_manual.setName("Válvula"); // NOI18N
+        boton_manual.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        boton_manual.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton_manualMouseEntered(evt);
+            }
+        });
+        jToolBar1.add(boton_manual);
+
+        bomba.setBackground(new java.awt.Color(204, 204, 204));
+        bomba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono_bomba1.png"))); // NOI18N
+        bomba.setToolTipText("Bomba");
+        bomba.setFocusable(false);
+        bomba.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bomba.setName("Válvula"); // NOI18N
+        bomba.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        bomba.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bombaMouseEntered(evt);
+            }
+        });
+        jToolBar1.add(bomba);
+
+        extractor.setBackground(new java.awt.Color(204, 204, 204));
+        extractor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/extractor_icon.png"))); // NOI18N
+        extractor.setToolTipText("Extractor");
+        extractor.setFocusable(false);
+        extractor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        extractor.setName("Válvula"); // NOI18N
+        extractor.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        extractor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                extractorMouseEntered(evt);
+            }
+        });
+        jToolBar1.add(extractor);
+
+        ventilador.setBackground(new java.awt.Color(204, 204, 204));
+        ventilador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/icono_ventilador.png"))); // NOI18N
+        ventilador.setToolTipText("Ventilador");
+        ventilador.setFocusable(false);
+        ventilador.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ventilador.setName("Válvula"); // NOI18N
+        ventilador.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        ventilador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                ventiladorMouseEntered(evt);
+            }
+        });
+        jToolBar1.add(ventilador);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -207,6 +327,10 @@ public class Inicio extends javax.swing.JFrame {
                  pestañas.setIconAt(num_pestañas-1, icono);
               
                 break;
+                default:
+                    indexTab=pestañas.getSelectedIndex();
+                    System.out.println("pestaña N° "+indexTab);
+                    break;
         }
         
         break;
@@ -258,20 +382,22 @@ JFrame frame = new JFrame("Input dialog");
       
     }//GEN-LAST:event_cargar_planoMouseEntered
 
-    private void jButton2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseEntered
+    private void ValvulaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ValvulaMouseEntered
     
-    }//GEN-LAST:event_jButton2MouseEntered
+    }//GEN-LAST:event_ValvulaMouseEntered
 
     private void cargar_planoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cargar_planoActionPerformed
  
         //** identifica la pestaña seleccionada**//
-        int indexTab=pestañas.getSelectedIndex();
+        indexTab=pestañas.getSelectedIndex();
         String tab=pestañas.getTitleAt(indexTab);
         Icon icono=pestañas.getIconAt(indexTab);
+        
+        
   //** abrir imagen de fondo**//
   
    JFileChooser abrir_imagen=new JFileChooser();
-   abrir_imagen.setFileFilter(new FileNameExtensionFilter("Archivos de imagen", "jpg", "jpeg", "png", "gif"));
+   abrir_imagen.setFileFilter(new FileNameExtensionFilter("Archivos de imagen", "jpg", "jpeg", "png"));
    abrir_imagen.showDialog(this, "Abrir");
    File file = abrir_imagen.getSelectedFile();
    if(file!=null)
@@ -280,15 +406,17 @@ JFrame frame = new JFrame("Input dialog");
    Icon fondo=new javax.swing.ImageIcon(ruta);
  
  //** crea un Image panel**//
- rojerusan.RSPanelImage imagenpane = new rojerusan.RSPanelImage(); 
+imagenpane = new rojerusan.RSPanelImage(); 
   imagenpane.setImagen(fondo);
-  
+  imagenpane.setName(tab);
+   paneles[indexTab]=imagenpane;
   //** añade el panel a la pestaña seleccionada**//
   pestañas.remove(indexTab);
   pestañas.add(imagenpane, indexTab);
   pestañas.setTitleAt(indexTab, tab);
   pestañas.setIconAt(indexTab, icono);
   pestañas.setSelectedIndex(indexTab);
+   
    }
    else{
        JOptionPane.showMessageDialog(this,"Imagen no válida", 
@@ -297,6 +425,382 @@ JFrame frame = new JFrame("Input dialog");
    }
     }//GEN-LAST:event_cargar_planoActionPerformed
 
+    private void sprinklerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sprinklerMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sprinklerMouseEntered
+
+    private void sensor_humoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sensor_humoMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sensor_humoMouseEntered
+
+    private void estroboscopicoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_estroboscopicoMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estroboscopicoMouseEntered
+
+    private void boton_manualMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boton_manualMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boton_manualMouseEntered
+
+    private void bombaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bombaMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bombaMouseEntered
+
+    private void extractorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_extractorMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_extractorMouseEntered
+
+    private void ventiladorMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ventiladorMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ventiladorMouseEntered
+
+   
+    
+     private void inicializarBarra_herramientas() {
+    
+        //** Boton correspondiente a la válvula**//
+     
+        Valvula.addMouseListener(new java.awt.event.MouseAdapter() {   
+                                @Override
+                                @SuppressWarnings("empty-statement")
+				public void mouseReleased(java.awt.event.MouseEvent e) { 
+					
+                                        setCursor(cur_def);
+                                        
+				      int x =e.getX()-Valvula.getX(); 
+				      int y =e.getY()-Valvula.getY(); 
+                                   try
+                                         {
+                                             
+                                        RSPanelImage plano = paneles[indexTab];
+                                        plano.add(new_boto(Valvula,x,y));
+                                         pestañas.add(imagenpane, indexTab);
+                                         pestañas.setSelectedIndex(indexTab);
+                                        
+                                          }catch(Exception error){
+                                          JOptionPane.showMessageDialog(null,"Seleccione un plano de planta primero","WARNING!",JOptionPane.WARNING_MESSAGE);
+                                          System.out.println(error);
+                                     }
+                                   
+				    
+				}
+                                @Override
+				public void mousePressed(java.awt.event.MouseEvent e) {
+					setCursor(cur_move);
+                                        
+                                        indexTab=pestañas.getSelectedIndex();
+                                         
+                                     
+				}
+			});   
+     
+         //** Boton correspondiente al sprinkler**//
+     
+        sprinkler.addMouseListener(new java.awt.event.MouseAdapter() {   
+                                @Override
+                                @SuppressWarnings("empty-statement")
+				public void mouseReleased(java.awt.event.MouseEvent e) { 
+					
+                                        setCursor(cur_def);
+                                        
+				      int x =e.getX()-Valvula.getX(); 
+				      int y =e.getY()-Valvula.getY(); 
+                                   try
+                                         {
+                                             
+                                        RSPanelImage plano = paneles[indexTab];
+                                        plano.add(new_boto(sprinkler,x,y));
+                                         pestañas.add(imagenpane, indexTab);
+                                         pestañas.setSelectedIndex(indexTab);
+                                        
+                                          }catch(Exception error){
+                                          JOptionPane.showMessageDialog(null,"Seleccione un plano de planta primero","WARNING!",JOptionPane.WARNING_MESSAGE);
+                                          System.out.println(error);
+                                     }
+                                   
+				    
+				}
+                                @Override
+				public void mousePressed(java.awt.event.MouseEvent e) {
+					setCursor(cur_move);
+                                        
+                                        indexTab=pestañas.getSelectedIndex();
+                                         
+                                     
+				}
+			});   
+        
+          //** Boton correspondiente al sensor de humo**//
+     
+        sensor_humo.addMouseListener(new java.awt.event.MouseAdapter() {   
+                                @Override
+                                @SuppressWarnings("empty-statement")
+				public void mouseReleased(java.awt.event.MouseEvent e) { 
+					
+                                        setCursor(cur_def);
+                                        
+				      int x =e.getX()-Valvula.getX(); 
+				      int y =e.getY()-Valvula.getY(); 
+                                   try
+                                         {
+                                             
+                                        RSPanelImage plano = paneles[indexTab];
+                                        plano.add(new_boto(sensor_humo,x,y));
+                                         pestañas.add(imagenpane, indexTab);
+                                         pestañas.setSelectedIndex(indexTab);
+                                        
+                                          }catch(Exception error){
+                                          JOptionPane.showMessageDialog(null,"Seleccione un plano de planta primero","WARNING!",JOptionPane.WARNING_MESSAGE);
+                                          System.out.println(error);
+                                     }
+                                   
+				    
+				}
+                                @Override
+				public void mousePressed(java.awt.event.MouseEvent e) {
+					setCursor(cur_move);
+                                        
+                                        indexTab=pestañas.getSelectedIndex();
+                                         
+                                     
+				}
+			});   
+        
+     //** Boton correspondiente a la luz estroboscopica**//
+     
+        estroboscopico.addMouseListener(new java.awt.event.MouseAdapter() {   
+                                @Override
+                                @SuppressWarnings("empty-statement")
+				public void mouseReleased(java.awt.event.MouseEvent e) { 
+					
+                                        setCursor(cur_def);
+                                        
+				      int x =e.getX()-Valvula.getX(); 
+				      int y =e.getY()-Valvula.getY(); 
+                                   try
+                                         {
+                                             
+                                        RSPanelImage plano = paneles[indexTab];
+                                        plano.add(new_boto(estroboscopico,x,y));
+                                         pestañas.add(imagenpane, indexTab);
+                                         pestañas.setSelectedIndex(indexTab);
+                                        
+                                          }catch(Exception error){
+                                          JOptionPane.showMessageDialog(null,"Seleccione un plano de planta primero","WARNING!",JOptionPane.WARNING_MESSAGE);
+                                          System.out.println(error);
+                                     }
+                                   
+				    
+				}
+                                @Override
+				public void mousePressed(java.awt.event.MouseEvent e) {
+					setCursor(cur_move);
+                                        
+                                        indexTab=pestañas.getSelectedIndex();
+                                         
+                                     
+				}
+			});   
+        
+        //** Boton correspondiente a la estación manual**//
+     
+        boton_manual.addMouseListener(new java.awt.event.MouseAdapter() {   
+                                @Override
+                                @SuppressWarnings("empty-statement")
+				public void mouseReleased(java.awt.event.MouseEvent e) { 
+					
+                                        setCursor(cur_def);
+                                        
+				      int x =e.getX()-Valvula.getX(); 
+				      int y =e.getY()-Valvula.getY(); 
+                                   try
+                                         {
+                                             
+                                        RSPanelImage plano = paneles[indexTab];
+                                        plano.add(new_boto(boton_manual,x,y));
+                                         pestañas.add(imagenpane, indexTab);
+                                         pestañas.setSelectedIndex(indexTab);
+                                        
+                                          }catch(Exception error){
+                                          JOptionPane.showMessageDialog(null,"Seleccione un plano de planta primero","WARNING!",JOptionPane.WARNING_MESSAGE);
+                                          System.out.println(error);
+                                     }
+                                   
+				    
+				}
+                                @Override
+				public void mousePressed(java.awt.event.MouseEvent e) {
+					setCursor(cur_move);
+                                        
+                                        indexTab=pestañas.getSelectedIndex();
+                                         
+                                     
+				}
+			});   
+        
+        //** Boton correspondiente a la bomba**//
+     
+        bomba.addMouseListener(new java.awt.event.MouseAdapter() {   
+                                @Override
+                                @SuppressWarnings("empty-statement")
+				public void mouseReleased(java.awt.event.MouseEvent e) { 
+					
+                                        setCursor(cur_def);
+                                        
+				      int x =e.getX()-Valvula.getX(); 
+				      int y =e.getY()-Valvula.getY(); 
+                                   try
+                                         {
+                                             
+                                        RSPanelImage plano = paneles[indexTab];
+                                        plano.add(new_boto(bomba,x,y));
+                                         pestañas.add(imagenpane, indexTab);
+                                         pestañas.setSelectedIndex(indexTab);
+                                        
+                                          }catch(Exception error){
+                                          JOptionPane.showMessageDialog(null,"Seleccione un plano de planta primero","WARNING!",JOptionPane.WARNING_MESSAGE);
+                                          System.out.println(error);
+                                     }
+                                   
+				    
+				}
+                                @Override
+				public void mousePressed(java.awt.event.MouseEvent e) {
+					setCursor(cur_move);
+                                        
+                                        indexTab=pestañas.getSelectedIndex();
+                                         
+                                     
+				}
+			});  
+        
+        //** Boton correspondiente al extractor**//
+     
+        extractor.addMouseListener(new java.awt.event.MouseAdapter() {   
+                                @Override
+                                @SuppressWarnings("empty-statement")
+				public void mouseReleased(java.awt.event.MouseEvent e) { 
+					
+                                        setCursor(cur_def);
+                                        
+				      int x =e.getX()-Valvula.getX(); 
+				      int y =e.getY()-Valvula.getY(); 
+                                   try
+                                         {
+                                             
+                                        RSPanelImage plano = paneles[indexTab];
+                                        plano.add(new_boto(extractor,x,y));
+                                         pestañas.add(imagenpane, indexTab);
+                                         pestañas.setSelectedIndex(indexTab);
+                                        
+                                          }catch(Exception error){
+                                          JOptionPane.showMessageDialog(null,"Seleccione un plano de planta primero","WARNING!",JOptionPane.WARNING_MESSAGE);
+                                          System.out.println(error);
+                                     }
+                                   
+				    
+				}
+                                @Override
+				public void mousePressed(java.awt.event.MouseEvent e) {
+					setCursor(cur_move);
+                                        
+                                        indexTab=pestañas.getSelectedIndex();
+                                         
+                                     
+				}
+			});  
+         //** Boton correspondiente al ventilador**//
+     
+        ventilador.addMouseListener(new java.awt.event.MouseAdapter() {   
+                                @Override
+                                @SuppressWarnings("empty-statement")
+				public void mouseReleased(java.awt.event.MouseEvent e) { 
+					
+                                        setCursor(cur_def);
+                                        
+				      int x =e.getX();//-Valvula.getX(); 
+				      int y =e.getY();//-Valvula.getY(); 
+                                   try
+                                         {
+                                             
+                                        RSPanelImage plano = paneles[indexTab];
+                                        plano.add(new_boto(ventilador,x,y));
+                                         pestañas.add(imagenpane, indexTab);
+                                         pestañas.setSelectedIndex(indexTab);
+                                        
+                                          }catch(Exception error){
+                                          JOptionPane.showMessageDialog(null,"Seleccione un plano de planta primero","WARNING!",JOptionPane.WARNING_MESSAGE);
+                                          System.out.println(error);
+                                     }
+                                   
+				    
+				}
+                                @Override
+				public void mousePressed(java.awt.event.MouseEvent e) {
+					setCursor(cur_move);
+                                        
+                                        indexTab=pestañas.getSelectedIndex();
+                                         
+                                     
+				}
+			});  
+     }
+    
+    
+     public Component new_boto(JButton obj, int x, int y) 
+	{
+	  final JButton boto = new JButton(obj.getIcon());
+          
+         
+	
+	  boto.setHorizontalAlignment(SwingConstants.CENTER);
+	  boto.setForeground(obj.getForeground());
+	  boto.setBackground(obj.getBackground());
+           boto.setBorderPainted(false);
+           paneles[indexTab].setLayout(null);
+//      boto.addMouseMotionListener((MouseMotionListener) this);
+
+         boto.setBounds(x,y,obj.getWidth(),obj.getHeight());
+             paneles[indexTab].repaint();
+	  boto.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+                        @Override
+			public void mouseDragged(java.awt.event.MouseEvent e) {
+                          
+				boto.setLocation( boto.getX() + e.getX() - boto.getWidth() / 2,
+				boto.getY() + e.getY() - boto.getHeight() / 2);
+                                
+                              
+			}
+		});
+          
+         boto.addMouseListener(new MouseAdapter() {
+             @Override
+             public void mouseClicked(MouseEvent e) {
+        switch(e.getButton()){
+            case 1:
+                 System.out.println("Boton Izquierdo "+boto.getToolTipText());
+//                 info_objeto info=new info_objeto();
+//                info.setTitle(boto.getToolTipText());
+//                info.idObjeto.setText(boto.getToolTipText());
+//                info.show();
+                 break;
+            case 3:
+                
+                 String nombre=JOptionPane.showInputDialog("Nombre ");
+               boto.setToolTipText(nombre);
+              
+                
+                
+                 break;
+        }
+  
+    }
+             
+});
+        
+         
+	  return(boto);  
+	}
+    
     /**
      * @param args the command line arguments
      */
@@ -333,9 +837,13 @@ JFrame frame = new JFrame("Input dialog");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Valvula;
+    private javax.swing.JButton bomba;
+    private javax.swing.JButton boton_manual;
     private javax.swing.JButton cargar_plano;
     private javax.swing.JMenuItem cerrar_pestaña;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton estroboscopico;
+    private javax.swing.JButton extractor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -344,5 +852,8 @@ JFrame frame = new JFrame("Input dialog");
     private javax.swing.JPopupMenu menu_emergente;
     public static javax.swing.JTabbedPane pestañas;
     private javax.swing.JMenuItem renombrar;
+    private javax.swing.JButton sensor_humo;
+    private javax.swing.JButton sprinkler;
+    private javax.swing.JButton ventilador;
     // End of variables declaration//GEN-END:variables
 }
