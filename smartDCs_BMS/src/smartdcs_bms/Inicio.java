@@ -34,6 +34,8 @@ public class Inicio extends javax.swing.JFrame {
        public rojerusan.RSPanelImage imagenpane;
        RSPanelImage[] paneles=new RSPanelImage[200];
         int indexTab;
+        incendios panel_incendios= new incendios();
+        alarmas_incendios alarmas = new alarmas_incendios();
     /**
      * Creates new form Inicio
      */
@@ -86,6 +88,11 @@ sistema();
 
         menu_alarma.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/alarma.png"))); // NOI18N
         menu_alarma.setText("Alarmas");
+        menu_alarma.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menu_alarmaMouseClicked(evt);
+            }
+        });
         Barra_menu.add(menu_alarma);
 
         setJMenuBar(Barra_menu);
@@ -117,16 +124,36 @@ sistema();
       sistema();      
     }//GEN-LAST:event_menu_sistemaMouseClicked
 
+    private void menu_alarmaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_alarmaMouseClicked
+        // TODO add your handling code here:
+        int ancho=super.getWidth();
+       int alto=super.getHeight();
+       super.remove(panel_incendios);
+       
+       alarmas.setSize(ancho, alto);
+       super.getContentPane().add(alarmas);
+      super.pack();
+      super.repaint();
+        super.setSize(ancho, alto);
+         this.addWindowStateListener(new WindowStateListener(){
+          @Override
+public void windowStateChanged(WindowEvent e) {
+  alarmas.setSize(e.getWindow().getSize().width-15, e.getWindow().getSize().height-60);
+    
+ }});
+    }//GEN-LAST:event_menu_alarmaMouseClicked
+
    public void sistema(){
        int ancho=super.getWidth();
        int alto=super.getHeight();
-       //super.remove(pestañas);
+       super.remove(alarmas);
        //super.remove(barra_diseño);
-       incendios panel_incendios= new incendios();
+       
         panel_incendios.setSize(ancho,alto);
        
       super.getContentPane().add(panel_incendios);
       super.pack();
+       super.repaint();
         super.setSize(ancho, alto);
         
         //** ajustar el tamaño del Jpanel al del jframe
