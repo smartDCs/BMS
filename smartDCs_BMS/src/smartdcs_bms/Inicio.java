@@ -101,7 +101,7 @@ sistema();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 726, Short.MAX_VALUE)
+            .addGap(0, 971, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +130,7 @@ sistema();
        int alto=super.getHeight();
        super.remove(panel_incendios);
        
-       alarmas.setSize(ancho, alto);
+       alarmas.setSize(ancho-30, alto-100);
        super.getContentPane().add(alarmas);
       super.pack();
       super.repaint();
@@ -138,7 +138,7 @@ sistema();
          this.addWindowStateListener(new WindowStateListener(){
           @Override
 public void windowStateChanged(WindowEvent e) {
-  alarmas.setSize(e.getWindow().getSize().width-15, e.getWindow().getSize().height-60);
+  alarmas.setSize(e.getWindow().getSize().width-30, e.getWindow().getSize().height-100);
     
  }});
     }//GEN-LAST:event_menu_alarmaMouseClicked
