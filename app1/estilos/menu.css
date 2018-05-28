@@ -1,0 +1,96 @@
+*{
+    margin:0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body{
+    background: #fff;
+    line-height: 18px;
+   overflow-y:hidden;
+}
+.boton{
+    background: #fff;
+}
+
+.plano{
+    width: 1000px;
+    height: 600px;
+}
+#menu{
+    display:inline-block;
+    height: 50px;
+    margin:5px 5px;
+    text-align: center;
+/*    white-space: nowrap;*/
+    width: 100%;
+    background: #333333;
+}
+#menu ul {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+#menu li {
+  background-position: 0% center;
+  display: block;
+  float: left;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 37px;
+  width: 65px;
+
+}
+#btn_home {
+    padding: 20px 30px; 
+  background: url("../imagenes/icono home.png") no-repeat center #333333;
+  background-size: 30px 30px;
+}
+#btn_upload {
+    padding: 20px 30px;
+    background: url("../imagenes/upload2.png") no-repeat center #333333;
+    background-size: 30px 30px;
+ 
+}
+#btn_red {
+    padding: 20px 30px;
+    background: url("../imagenes/red.png") no-repeat center #cccccc;
+    background-size: 40px 40px;
+}
+#btn_valve {
+    padding: 20px 30px;
+    background: url("../imagenes/valve.png") no-repeat center #cccccc;
+    background-size: 40px 40px;
+}
+#btn_sprinkler {
+    padding: 20px 30px;
+    background: url("../imagenes/sprinkler.png") no-repeat center #cccccc;
+    background-size: 40px 40px;
+}
+#btn_estmanual {
+    padding: 20px 30px;
+    background: url("../imagenes/estacion manual.png") no-repeat center #cccccc;
+    background-size: 40px 40px;
+}
+#btn_estroboscopica {
+    padding: 20px 30px;
+    background: url("../imagenes/estroboscopica.png") no-repeat center #cccccc;
+    background-size: 40px 40px;
+}
+#btn_humo {
+    padding: 20px 30px;
+    background: url("../imagenes/humo.png") no-repeat center #cccccc;
+    background-size: 40px 40px;
+}
+#btn_extractor {
+    padding: 20px 30px;
+    background: url("../imagenes/extractor.png") no-repeat center #cccccc;
+    background-size: 40px 40px;
+}
+#btn_ventilador {
+    padding: 20px 30px;
+    background: url("../imagenes/ventilador.png") no-repeat center #cccccc;
+    background-size: 40px 40px;
+}
