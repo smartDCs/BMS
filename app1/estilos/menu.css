@@ -15,10 +15,19 @@ body{
     background: #fff;
 }
 
-.plano{
-    width: 1000px;
-    height: 600px;
+#plano{
+    width: 100%;
+    height: 100%;
 }
+#panel_plano{
+   width: 90%;
+    height: 80%;
+   position: absolute;
+   margin-left: 5%;
+    border: 2px solid #aaaaaa;
+     background-size: 100% 100%;
+     background-repeat:no-repeat;
+   }
 #menu{
     display:inline-block;
     height: 50px;

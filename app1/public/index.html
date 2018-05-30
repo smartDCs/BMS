@@ -15,17 +15,16 @@ and open the template in the editor.
       <header>
            <nav id="menu">
             <ul>
-              
-                <li class="nav_bar"><a href="#"><button id="btn_home" onclick="info(this);"></button></a></li> 
-                <li class="nav_bar"><a href="#"><button id="btn_upload" onclick="info(this);"></button></a></li>
+                <li class="nav_bar"><a href="#"><button id="btn_home" onclick="info(this);" ></button></a></li> 
+                <li class="nav_bar"><a href="#"><button id="btn_upload" onclick="cargar_imagen(this);"></button></a></li>
                 <li class="nav_bar"><a href="#"><button id="btn_red" onclick="info(this);"></button></a></li>
-                <li class="nav_bar"><a href="#"><button id="btn_valve" onclick="info(this);"></button></a></li>
-                <li class="nav_bar"><a href="#"><button id="btn_sprinkler" onclick="info(this);"></button></a></li>
-                <li class="nav_bar"><a href="#"><button id="btn_estmanual" onclick="info(this);"></button></a></li>
-                <li class="nav_bar"><a href="#"><button id="btn_estroboscopica" onclick="info(this);"></button></a></li>
-                <li class="nav_bar"><a href="#"><button id="btn_humo" onclick="info(this);"></button></a></li>
-                <li class="nav_bar"><a href="#"><button id="btn_extractor" onclick="info(this);"></button></a></li>
-                <li class="nav_bar"><a href="#"><button id="btn_ventilador" onclick="info(this);"></button></a></li>
+                <li class="nav_bar"><a href="#"><button id="btn_valve" onclick="info(this);" draggable="true" ondragstart="drag(event)" width="336" height="69"></button></a></li>
+                <li class="nav_bar"><a href="#"><button id="btn_sprinkler" onclick="info(this);" draggable="true" ondragstart="drag(event)" width="336" height="69"></button></a></li>
+                <li class="nav_bar"><a href="#"><button id="btn_estmanual" onclick="info(this);" draggable="true" ondragstart="drag(event)" width="336" height="69"></button></a></li>
+                <li class="nav_bar"><a href="#"><button id="btn_estroboscopica" onclick="info(this);" draggable="true" ondragstart="drag(event)" width="336" height="69"></button></a></li>
+                <li class="nav_bar"><a href="#"><button id="btn_humo" onclick="info(this);" draggable="true" ondragstart="drag(event)" width="336" height="69"></button></a></li>
+                <li class="nav_bar"><a href="#"><button id="btn_extractor" onclick="info(this);" draggable="true" ondragstart="drag(event)" width="336" height="69"></button></a></li>
+                <li class="nav_bar"><a href="#"><button id="btn_ventilador" onclick="info(this);" draggable="true" ondragstart="drag(event)" width="336" height="69"></button></a></li>
             </ul>
           
         </nav>
@@ -34,16 +33,11 @@ and open the template in the editor.
             
         <div>
             <input class="boton" id="caragar_imagen" type="file" accept="image/*"  onchange="cargar_imagen(this);"/>
-            <div>
-                <center>
-                    <img class="plano" id="imagen" style="width:800; height:600; " >
-                </center>
-            </div>
+           
         </div>
-        <div>
-            <label>Desarrollado por domotizArq</label>
-        </div>
-      
-       
+         <div id="panel_plano" ondrop="drop(event)" ondragover="allowDrop(event)">
+              <img id="imagen">
+         </div>
+             
     </body>
 </html>
